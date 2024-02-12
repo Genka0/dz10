@@ -11,3 +11,6 @@ poetry add "fastapi[all]"
 
 alembic init migrations
 alembic revision --autogenerate -m 'initial'
+
+
+#     region: Mapped[str] = mapped_column(nullable=False)
