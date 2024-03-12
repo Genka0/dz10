@@ -10,6 +10,12 @@ from typing import Sequence, Union
 from alembic import op
 import sqlalchemy as sa
 
+def upgrade():
+    # Ваша существующая логика миграции здесь
+
+    # Используем функцию CASE для преобразования значений nickname в тип BOOLEAN
+    op.execute("ALTER TABLE users ALTER COLUMN nickname TYPE BOOLEAN USING CASE WHEN nickname = 'true' THEN true ELSE false END")
+
 
 # revision identifiers, used by Alembic.
 revision: str = '7cd9ce3f9752'
