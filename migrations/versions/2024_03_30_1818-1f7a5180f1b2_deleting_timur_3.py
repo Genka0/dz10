@@ -1,8 +1,8 @@
-"""Adding street column 2 take
+"""deleting Timur 3
 
-Revision ID: 7cd9ce3f9752
-Revises: 7cda0b2d7d7c
-Create Date: 2024-02-12 19:31:36.771549
+Revision ID: 1f7a5180f1b2
+Revises: a978edf51ed7
+Create Date: 2024-03-30 18:18:02.380726
 
 """
 from typing import Sequence, Union
@@ -12,8 +12,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '7cd9ce3f9752'
-down_revision: Union[str, None] = '7cda0b2d7d7c'
+revision: str = '1f7a5180f1b2'
+down_revision: Union[str, None] = 'a978edf51ed7'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 

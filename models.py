@@ -6,7 +6,6 @@ from sqlalchemy.orm import relationship
 from database import Base
 from datetime import datetime
 
-
 # from sqlalchemy import DateTime
 # from sqlalchemy import Column
 # from database import Base
@@ -81,7 +80,9 @@ class User(BaseInfoMixin, Base):
     name = Column(String)
     login = Column(String(30), unique=True, index=True)
     password = Column(String)
+#    nickname = Column(String)  # Исправлено
     nickname: Mapped[Optional[str]]  # Исправлено
+
     is_active: Mapped[bool] = mapped_column(default=True)
     age = Column(Integer)
     money = Column(Integer, default=0)
@@ -92,10 +93,22 @@ class User(BaseInfoMixin, Base):
     def __repr__(self):
         return f'User {self.name} #{self.id}'
 
-class Order(BaseInfoMixin, Base):
-    __tablename__ = 'orders'  
+# class Order(BaseInfoMixin, Base):
+#     __tablename__ = 'orders'  
+#     quantity = Column(Integer)
+#     price = Column(Float)
+#     customer = Column(Integer, ForeignKey('users.id'))
+
+#     user = relationship('User', back_populates='orders')
+
+class Order(Base):
+    __tablename__ = 'orders'
+
+    id = Column(Integer, primary_key=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
     quantity = Column(Integer)
     price = Column(Float)
-    customer = Column(Integer, ForeignKey('users.id'))
+    customer_id = Column(Integer, ForeignKey('users.id'))  # ForeignKey на идентификатор пользователя
 
-    user = relationship('User', back_populates='orders')
+    # Добавляем отношение с классом User
+    user = relationship('User', back_populates='orders') 
